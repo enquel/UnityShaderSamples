@@ -107,11 +107,15 @@ Shader "Mandi/SimpleLitVolumeTexture"
                             //finalColor = mul(color, float4(1, 0, 0, 1))*0.5;
 
                             //we are only interested in scaling the values, so no mul but simple multiplication
-                            finalColor = color * float4(1, 0, 1, 1);
-                            //float coeff = (MAX_STEP_COUNT - i) / (MAX_STEP_COUNT);
+                            //finalColor = color * float4(1, 0, 1, 1);
+                            finalColor = color * (_LightColor0);
+
+                            //float maxStep = MAX_STEP_COUNT;
+                            //float iF = i;
+                            //float coeff = (maxStep - iF) / (maxStep)*10;
                             //finalColor = color * (_LightColor0) *coeff;
 
-                            //finalColor = ((MAX_STEP_COUNT - i) / (MAX_STEP_COUNT))*color  + ((i) / (MAX_STEP_COUNT)) *color *(_LightColor0) * ((MAX_STEP_COUNT - i) / (MAX_STEP_COUNT)) * 10;
+                            //finalColor = (maxStep - iF) / (maxStep)*color  + (iF) / (maxStep)*color *(_LightColor0) * ((MAX_STEP_COUNT - i) / (MAX_STEP_COUNT)) * 10;
                             //finalColor = ((MAX_STEP_COUNT-i)/ MAX_STEP_COUNT)*color + (i/MAX_STEP_COUNT)*(color * (_LightColor0) * (MAX_STEP_COUNT / (MAX_STEP_COUNT - 0)));
                         }
 
