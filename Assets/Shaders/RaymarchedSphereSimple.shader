@@ -40,20 +40,12 @@
                  return o;
             }
 
-            float random(float2 pt, float seed)
-            {
-                const float a = 1.9898;
-                const float b = 1.233;
-                const float c = 48.543123;
-                return frac(sin(dot(pt, float2(a, b))) * c);
-            }
-
             fixed4 raymarch(float3 position, float3 direction)
             {
                 for (int i = 0; i < STEPS; i++)
                 {
                     float len = length(position - _Center.xyz);
-                    if (len < _Radius) return (_SphereColor/len/0.85 * random(position,77));
+                    if (len < _Radius) return _SphereColor;
                     position += direction * STEP_SIZE;
                 }
                 return fixed4(1, 1, 1, -1);
